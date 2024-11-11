@@ -1,41 +1,42 @@
+<?php
+session_start();
+?>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="stylesheet" href="css/styles.css">
-  <!-- <link rel="stylesheet" src="styles.css">  -->
   <link rel="stylesheet" href="js/login.js">
   <title>Login</title>
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 </head>
-<body>
-    <form method="post">
-            <div class="form-structor">
-            <div class="signup">
-            <h2 class="form-title" id="signup"><span>o</span>Iniciar Sesion</h2>
-            <div class="form-holder">
-                <input type="text" class="input" placeholder="Nombre de usuario" name="ingUsuario"/>
-                <input type="password" class="input" placeholder="Contraseña" name="ingPassword"/>
-            </div>
-            <button class="submit-btn">Iniciar Sesion</button>
-            </div>
-            <div class="login slide-up">
-            <div class="center">
-                <h2 class="form-title" id="login"><span>o</span>Resgistrate</h2>
-                <div class="form-holder">
-                <input type="email" class="input" placeholder="Correo" />
-                <input type="password" class="input" placeholder="Contraseña" />
-                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-                </div>
-                <button class="submit-btn">Iniciar Sesion</button>
-            </div>
-            </div>
-        </div>
-
-        <?php
-            $login= new controladorUsuario();
-            $login->ctrUsuario();
-        ?>
-    </form>
-</body>
-<script src="js/login.js"></script>
+<!--=====================================
+CUERPO DOCUMENTO
+======================================-->
+    <body class="hold-transition skin-blue sidebar-collapse sidebar-mini login-page">
+    <?php
+    if(isset($_SESSION["iniciarSesion"]) && $_SESSION["iniciarSesion"] == "ok"){
+        if(isset($_GET["ruta"]))
+        {
+        if($_GET["ruta"] == "inicio" 
+            ||
+            $_GET["ruta"] == "salir")
+            {
+            include "modulos/".$_GET["ruta"].".php";
+        }
+        else{
+            include "modulos/404.php";
+        }
+        }
+        else{
+            include "modulos/inicio.php";
+        }
+    }
+    else{
+        include "modulos/login.php";
+    } 
+    
+    ?>
+    </body>
 </html>
