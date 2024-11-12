@@ -1,5 +1,5 @@
-
   <!DOCTYPE html>
+
   <body>
     <form action="" method="post">
     <div class="form-structor">
@@ -16,6 +16,10 @@
             <h2 class="form-title" id="login"><span>o</span>Resgistrate</h2>
             <div class="form-holder">
             <input type="email" class="input" placeholder="Correo" />
+            <input type="password" class="input" placeholder="Contraseña" />
+            <input type="password" class="input" placeholder="Contraseña" />
+            <input type="password" class="input" placeholder="Contraseña" />
+            <input type="password" class="input" placeholder="Contraseña" />
             <input type="password" class="input" placeholder="Contraseña" />
             <span class="glyphicon glyphicon-lock form-control-feedback"></span>
             </div>

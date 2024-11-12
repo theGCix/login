@@ -1,0 +1,12 @@
+Options All -Indexes
+
+RewriteEngine On
+
+RewriteRule ^([-a-zA-Z0-9]+)$ index.php?ruta=$1
+
+ErrorDocument 404 https://localhost/login/view/modulos/404.php
+RewriteEngine on
+RewriteBase /
+
+RewriteCond %{REQUEST_URI} ^/404/$
+RewriteRule ^(.*)$ /login/view/modulos/404.php [L]

@@ -9,8 +9,8 @@ class controladorUsuario{
                 $item="usuario";
                 $valor=$_POST["ingUsuario"];
                 $respuesta=modeloUsuario::mdMostrarUsuario(tabla: $tabla,item: $item,valor: $valor);
-                if($respuesta["usuario"]==$_POST["ingUsuario"] && 
-                $respuesta["password"]==$encriptar){
+                if( is_array($respuesta) && $respuesta["password"]==$encriptar &&  $respuesta["usuario"]==$_POST["ingUsuario"]){
+                    //var_dump($respuesta["usuario"]);
                     if($respuesta["estado"]==1){
                         $_SESSION["iniciarSesion"]="ok";
                         $_SESSION["id"]=$respuesta["id"];
@@ -27,18 +27,16 @@ class controladorUsuario{
 						$ultimoLogin = modeloUsuario::mdActualizarUsuario($tabla, $item1, $valor1, $item2, $valor2);
                         if($ultimoLogin == "ok"){
 							echo '<script>
-								window.location = "inicio";
+								window.location = "";
 							</script>';
 						}		
                     }else{
 
 						echo '<br>
 							<div class="alert alert-danger">El usuario aún no está activado</div>';
-                           // echo var_dump($respuesta);
 					}
             }else{
                 echo '<br><div class="alert alert-danger">Error al ingresar, vuelve a intentarlo</div>';
-                // echo var_dump($respuesta);
                  }
             }
         }
