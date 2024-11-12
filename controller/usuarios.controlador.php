@@ -27,7 +27,7 @@ class controladorUsuario{
 						$ultimoLogin = modeloUsuario::mdActualizarUsuario($tabla, $item1, $valor1, $item2, $valor2);
                         if($ultimoLogin == "ok"){
 							echo '<script>
-								window.location = "inicio";
+								window.location = "";
 							</script>';
 						}		
                     }else{
