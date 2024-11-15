@@ -20,7 +20,7 @@ class modeloUsuario {
             $stmt = Conexion::conectar()->prepare(
                 "SELECT * FROM $tabla");
             $stmt->execute();
-            return $stmt -> fecthAll(PDO::FETCH_BOTH);
+            return $stmt -> fetchAll();
         }
         $stmt-> Close(PDO::FETCH_ASSOC);
         $stmt=null;
