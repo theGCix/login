@@ -14,7 +14,7 @@ class controladorUsuario{
                     if($respuesta["estado"]==1){
                         $_SESSION["iniciarSesion"]="ok";
                         $_SESSION["id"]=$respuesta["id"];
-                        $_SESSION["nombre"]=$respuesta["nombre"];
+                        // $_SESSION["nombre"]=$respuesta["nombre"];
                         $_SESSION["usuario"]=$respuesta["usuario"];
                         date_default_timezone_set('America/Bogota');
 						$fecha = date('Y-m-d');
@@ -24,7 +24,7 @@ class controladorUsuario{
 						$valor1 = $fechaActual;
 						$item2 = "id";
 						$valor2 = $respuesta["id"];
-						$ultimoLogin = modeloUsuario::mdActualizarUsuario($tabla, $item1, $valor1, $item2, $valor2);
+						$ultimoLogin = modeloUsuario::mdActualizarUsuario($tabla, $item1,$valor1,$item2,$valor2);
                         if($ultimoLogin == "ok"){
 							echo '<script>
 								window.location = "";
@@ -41,4 +41,63 @@ class controladorUsuario{
             }
         }
    }
+   /*=============================================
+	REGISTRO DE USUARIO
+	=============================================*/
+
+	static public function ctrCrearUsuario(){
+
+		if(isset($_POST["nuevoUsuario"])){
+
+			if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nuevoNombre"]) &&
+			   preg_match('/^[a-zA-Z0-9]+$/', $_POST["nuevoApellido"]) &&
+			   preg_match('/^[a-zA-Z0-9]+$/', $_POST["nuevoUsuario"]) &&
+			   preg_match('/^[a-zA-Z0-9]+$/', $_POST["nuevoPassword"])){
+
+				$tabla = "usuarios";
+
+				$encriptar = crypt($_POST["nuevoPassword"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
+
+				$datos = array("nombres" => $_POST["nuevoNombre"],
+                               "apellidos" => $_POST["nuevoApellido"],
+					           "usuario" => $_POST["nuevoUsuario"],
+					           "password" => $_POST["nuevoPassword"],
+							   "correo" => $_POST["nuevoCorreo"],
+					        //    "perfil" => $_POST["nuevoPerfil"],
+					           );
+
+				$respuesta = ModeloUsuario::mdRegistrarUsuario($tabla, $datos);
+
+				// var_dump($respuesta);
+			
+				if($respuesta == "ok"){
+					echo '<script>
+					swal({
+						type: "success",
+						title: "¡El usuario ha sido guardado correctamente!",
+						showConfirmButton: true,
+						confirmButtonText: "Cerrar"
+					}).then(function(result){
+						if(result.value){
+							window.location = "usuarios";
+						}
+					});
+					</script>';
+				}	
+			}else{
+				echo '<script>
+					swal({
+						type: "error",
+						title: "¡El usuario no puede ir vacío o llevar caracteres especiales!",
+						showConfirmButton: true,
+						confirmButtonText: "Cerrar"
+					}).then(function(result){
+						if(result.value){
+							window.location = "usuarios";
+						}
+					});
+				</script>';
+			}
+		}
+	}
 }

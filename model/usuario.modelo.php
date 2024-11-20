@@ -25,7 +25,10 @@ class modeloUsuario {
         $stmt-> Close(PDO::FETCH_ASSOC);
         $stmt=null;
     }
-    static public function mdActualizarUsuario($tabla, $item1, $valor1, $item2, $valor2){
+    /*=============================================
+	ACTUALIZACION DE USUARIO
+	=============================================*/
+    static public function mdActualizarUsuario($tabla, $item1, $valor1, $item2,$valor2){
 
 		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET $item1 = :$item1 WHERE $item2 = :$item2");
 
@@ -47,5 +50,33 @@ class modeloUsuario {
 		$stmt = null;
 
 	}
-}
-?>
+    /*=============================================
+	REGISTRO DE USUARIO
+	=============================================*/
+	static public function mdRegistrarUsuario($tabla, $datos){
+
+		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(nombres, apellidos, usuario, password, correo) VALUES (:nombres, :apellidos, :usuario, :password, :correo)");
+
+		$stmt->bindParam(":nombres", $datos["nombres"], PDO::PARAM_STR);
+        $stmt->bindParam(":apellidos", $datos["apellidos"], PDO::PARAM_STR);
+		$stmt->bindParam(":usuario", $datos["usuario"], PDO::PARAM_STR);
+        $stmt->bindParam(":password", $datos["password"], PDO::PARAM_STR);
+        $stmt->bindParam(":correo", $datos["correo"], PDO::PARAM_STR);
+		
+
+		if($stmt->execute()){
+
+			return "ok";	
+
+		}else{
+
+			return "error";
+		
+		}
+
+		$stmt->close();
+		
+		$stmt = null;
+
+	}
+}?>
