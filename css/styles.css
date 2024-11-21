@@ -86,7 +86,7 @@ html, body {
   -webkit-transform: translate(-50%, 0%);
   -webkit-transition: all 0.3s ease;
 }
-.form-structor .signup.slide-up .form-holder, .form-structor .signup.slide-up .submit-btn {
+.form-structor .signup.slide-up .form-holder, .form-structor .signup.slide-up .submit-btn .registro-btn {
   opacity: 0;
   visibility: hidden;
 }
@@ -138,7 +138,7 @@ html, body {
 .form-structor .signup .form-holder .input::-webkit-input-placeholder {
   color: rgba(0, 0, 0, 0.4);
 }
-.form-structor .signup .submit-btn {
+.form-structor .signup .submit-btn{
   background-color: rgba(0, 0, 0, 0.4);
   color: rgba(255, 255, 255, 0.7);
   border: 0;
@@ -154,7 +154,7 @@ html, body {
   visibility: visible;
   -webkit-transition: all 0.3s ease;
 }
-.form-structor .signup .submit-btn:hover {
+.form-structor .signup .registro-btn:hover {
   transition: all 0.3s ease;
   background-color: rgba(0, 0, 0, 0.8);
 }
@@ -229,7 +229,7 @@ html, body {
 .form-structor .login .center .form-holder .input::-webkit-input-placeholder {
   color: rgba(0, 0, 0, 0.4);
 }
-.form-structor .login .center .submit-btn {
+.form-structor .login .center .registro-btn {
   background-color: #6B92A4;
   color: rgba(255, 255, 255, 0.7);
   border: 0;
@@ -245,7 +245,7 @@ html, body {
   visibility: visible;
   -webkit-transition: all 0.3s ease;
 }
-.form-structor .login .center .submit-btn:hover {
+.form-structor .login .center .registro-btn:hover {
   transition: all 0.3s ease;
   background-color: rgba(0, 0, 0, 0.8);
 }

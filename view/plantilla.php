@@ -8,6 +8,8 @@ session_start();
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="js/login.js">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
   <!-- <link rel="stylesheet" href="css/404.css"> -->
   <title>Login</title>
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -38,4 +40,5 @@ CUERPO DOCUMENTO
     
     ?>
     </body>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </html>

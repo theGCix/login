@@ -23,7 +23,7 @@
           <input type="email" class="input" name="nuevoCorreo" placeholder="Correo" />
           <input type="password" class="input" name="nuevoPassword" placeholder="Contraseña" />
           </div>
-          <button class="submit-btn ">Crear Cuenta</button>
+          <button class="registro-btn" name="resgistro_btn">Crear Cuenta</button>
           
         </div>
         

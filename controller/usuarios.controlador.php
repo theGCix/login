@@ -55,6 +55,10 @@ class controladorUsuario{
 			   preg_match('/^[a-zA-Z0-9]+$/', $_POST["nuevoPassword"])){
 
 				$tabla = "usuarios";
+				$correo= $_POST["nuevoCorreo"];
+				//VERIFICAR SI EL CORREO YA EXISTE
+				
+
 
 				$encriptar = crypt($_POST["nuevoPassword"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
 
@@ -66,7 +70,7 @@ class controladorUsuario{
 					        //    "perfil" => $_POST["nuevoPerfil"],
 					           );
 
-				$respuesta = ModeloUsuario::mdRegistrarUsuario($tabla, $datos);
+				$respuesta = ModeloUsuario::mdRegistrarUsuario($tabla, $datos,$correo);
 
 				// var_dump($respuesta);
 			

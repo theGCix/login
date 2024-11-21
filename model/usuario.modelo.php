@@ -22,8 +22,8 @@ class modeloUsuario {
             $stmt->execute();
             return $stmt -> fetchAll();
         }
-        $stmt-> Close(PDO::FETCH_ASSOC);
-        $stmt=null;
+        $stmt->close();
+			$stmt = null;
     }
     /*=============================================
 	ACTUALIZACION DE USUARIO
@@ -31,7 +31,7 @@ class modeloUsuario {
     static public function mdActualizarUsuario($tabla, $item1, $valor1, $item2,$valor2){
 
 		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET $item1 = :$item1 WHERE $item2 = :$item2");
-
+		
 		$stmt -> bindParam(":".$item1, $valor1, PDO::PARAM_STR);
 		$stmt -> bindParam(":".$item2, $valor2, PDO::PARAM_STR);
 
@@ -44,39 +44,37 @@ class modeloUsuario {
 			return "error";	
 
 		}
-
-		$stmt -> close();
-
-		$stmt = null;
-
+		$stmt->close();
+			$stmt = null;
 	}
     /*=============================================
 	REGISTRO DE USUARIO
 	=============================================*/
-	static public function mdRegistrarUsuario($tabla, $datos){
+	static public function mdRegistrarUsuario($tabla, $datos,$correo){
 
-		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(nombres, apellidos, usuario, password, correo) VALUES (:nombres, :apellidos, :usuario, :password, :correo)");
+		//validar correo
+		$stmt_correo= Conexion::conectar()->prepare("SELECT correo FROM $tabla WHERE correo='$correo' LIMIT 1");
+		//var_dump($stmt_correo);
+		if ($stmt_correo->execute()) {
+			$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(nombres, apellidos, usuario, password, correo) VALUES (:nombres, :apellidos, :usuario, :password, :correo)");
+			$stmt->bindParam(":nombres", $datos["nombres"], PDO::PARAM_STR);
+			$stmt->bindParam(":apellidos", $datos["apellidos"], PDO::PARAM_STR);
+			$stmt->bindParam(":usuario", $datos["usuario"], PDO::PARAM_STR);
+			$stmt->bindParam(":password", $datos["password"], PDO::PARAM_STR);
+			$stmt->bindParam(":correo", $datos["correo"], PDO::PARAM_STR);
+			if($stmt->execute()){
 
-		$stmt->bindParam(":nombres", $datos["nombres"], PDO::PARAM_STR);
-        $stmt->bindParam(":apellidos", $datos["apellidos"], PDO::PARAM_STR);
-		$stmt->bindParam(":usuario", $datos["usuario"], PDO::PARAM_STR);
-        $stmt->bindParam(":password", $datos["password"], PDO::PARAM_STR);
-        $stmt->bindParam(":correo", $datos["correo"], PDO::PARAM_STR);
-		
-
-		if($stmt->execute()){
-
-			return "ok";	
-
-		}else{
-
-			return "error";
-		
+				return "ok";	
+	
+			}else{
+	
+				return "error";
+			
+			}
+			$stmt->close();
+			$stmt = null;
+		} else {
+			return "El correo ya existe";
 		}
-
-		$stmt->close();
-		
-		$stmt = null;
-
 	}
 }?>
