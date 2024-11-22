@@ -46,62 +46,58 @@ class controladorUsuario{
 	=============================================*/
 
 	static public function ctrCrearUsuario(){
-
 		if(isset($_POST["nuevoUsuario"])){
-
 			if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nuevoNombre"]) &&
 			   preg_match('/^[a-zA-Z0-9]+$/', $_POST["nuevoApellido"]) &&
 			   preg_match('/^[a-zA-Z0-9]+$/', $_POST["nuevoUsuario"]) &&
 			   preg_match('/^[a-zA-Z0-9]+$/', $_POST["nuevoPassword"])){
 
-				$tabla = "usuarios";
-				$correo= $_POST["nuevoCorreo"];
-				//VERIFICAR SI EL CORREO YA EXISTE
-				
+					$tabla = "usuarios";
+					$correo= "correo";
+					$contenido = $_POST["nuevoCorreo"];
+					//VERIFICAR SI EL CORREO YA EXISTE
+					$check_correo= modeloUsuario::mdConsultaCorreo($tabla,$correo, $contenido);
+					// echo var_dump( $contenido );
+					// echo"<br>";
+					// echo var_dump( $check_correo );
 
-
-				$encriptar = crypt($_POST["nuevoPassword"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
-
-				$datos = array("nombres" => $_POST["nuevoNombre"],
-                               "apellidos" => $_POST["nuevoApellido"],
-					           "usuario" => $_POST["nuevoUsuario"],
-					           "password" => $_POST["nuevoPassword"],
-							   "correo" => $_POST["nuevoCorreo"],
-					        //    "perfil" => $_POST["nuevoPerfil"],
-					           );
-
-				$respuesta = ModeloUsuario::mdRegistrarUsuario($tabla, $datos,$correo);
-
-				// var_dump($respuesta);
-			
-				if($respuesta == "ok"){
-					echo '<script>
-					swal({
-						type: "success",
-						title: "¡El usuario ha sido guardado correctamente!",
-						showConfirmButton: true,
-						confirmButtonText: "Cerrar"
-					}).then(function(result){
-						if(result.value){
-							window.location = "usuarios";
-						}
-					});
+					if($check_correo == false){
+						$encriptar = crypt($_POST["nuevoPassword"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
+						$datos = array("nombres" => $_POST["nuevoNombre"],
+										"apellidos" => $_POST["nuevoApellido"],
+										"usuario" => $_POST["nuevoUsuario"],
+										"password" => $_POST["nuevoPassword"],
+										"correo" => $_POST["nuevoCorreo"],
+									//    "perfil" => $_POST["nuevoPerfil"],
+										);
+						$respuesta = ModeloUsuario::mdRegistrarUsuario($tabla, $datos);
+						if($respuesta == "ok"){
+							echo '<script>
+								Swal.fire({
+								title: "Registro completado!",
+								text: "Su cuenta se ha regitrado correctamente!",
+								icon: "success"
+								});
+							</script>';
+						}else{
+							echo '<script>
+								Swal.fire({
+								icon: "error",
+								title: "Oops...",
+								text: "Los campos no pueden estar vacios!",
+								});
+							</script>';
+						}	
+					}else{
+						echo '<script>
+						Swal.fire({
+						icon: "error",
+						title: "Ups...",
+						text: "El correo ya se encuentra registrado!",
+						});
 					</script>';
-				}	
-			}else{
-				echo '<script>
-					swal({
-						type: "error",
-						title: "¡El usuario no puede ir vacío o llevar caracteres especiales!",
-						showConfirmButton: true,
-						confirmButtonText: "Cerrar"
-					}).then(function(result){
-						if(result.value){
-							window.location = "usuarios";
-						}
-					});
-				</script>';
+					}
+				}
 			}
-		}
 	}
 }

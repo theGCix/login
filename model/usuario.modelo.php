@@ -50,12 +50,8 @@ class modeloUsuario {
     /*=============================================
 	REGISTRO DE USUARIO
 	=============================================*/
-	static public function mdRegistrarUsuario($tabla, $datos,$correo){
+	static public function mdRegistrarUsuario($tabla, $datos){
 
-		//validar correo
-		$stmt_correo= Conexion::conectar()->prepare("SELECT correo FROM $tabla WHERE correo='$correo' LIMIT 1");
-		//var_dump($stmt_correo);
-		if ($stmt_correo->execute()) {
 			$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(nombres, apellidos, usuario, password, correo) VALUES (:nombres, :apellidos, :usuario, :password, :correo)");
 			$stmt->bindParam(":nombres", $datos["nombres"], PDO::PARAM_STR);
 			$stmt->bindParam(":apellidos", $datos["apellidos"], PDO::PARAM_STR);
@@ -73,8 +69,14 @@ class modeloUsuario {
 			}
 			$stmt->close();
 			$stmt = null;
-		} else {
-			return "El correo ya existe";
-		}
+		
 	}
-}?>
+
+	static public function mdConsultaCorreo($tabla,$correo,$contenido){
+		$stmt = Conexion::conectar()->prepare("SELECT correo FROM $tabla WHERE $correo=:$correo LIMIT 1");
+		$stmt->bindParam(":".$correo, $contenido, PDO::PARAM_STR);
+		$stmt->execute();
+		return $stmt -> fetch(PDO::FETCH_ASSOC);
+	}
+}
+?>

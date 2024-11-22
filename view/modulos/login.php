@@ -35,7 +35,6 @@
       $login->ctrIngresoUsuario();
       $signup= new controladorUsuario();
       $signup->ctrCrearUsuario();
-      
     ?>
     </form>
   </body>

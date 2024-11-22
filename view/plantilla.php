@@ -8,7 +8,16 @@ session_start();
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="js/login.js">
+   
+
+   <!-- jQuery Number -->
+   <script src="view/plugins/jqueryNumber/jquerynumber.min.js"></script>
+
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <!-- SweetAlert 2 -->
+  <script src="view/plugins/sweetalert2/sweetalert2.all.js"></script>
+   <!-- By default SweetAlert2 doesn't support IE. To enable IE 11 support, include Promise polyfill:-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
 
   <!-- <link rel="stylesheet" href="css/404.css"> -->
   <title>Login</title>
@@ -40,5 +49,5 @@ CUERPO DOCUMENTO
     
     ?>
     </body>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> -->
 </html>
