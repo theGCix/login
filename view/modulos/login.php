@@ -1,5 +1,3 @@
-  <!DOCTYPE html>
-
   <body>
     <form action="" method="post">
     <div class="form-structor">
@@ -11,7 +9,9 @@
         </div>
         <button class="submit-btn sign-in">Iniciar Sesion</button>
         <a href="#" style="color: white;">¿Olvidaste tu contraseña?</a>
+        
       </div>
+      
       
       <div class="login slide-up">
         <div class="center">
@@ -26,17 +26,10 @@
           <button class="registro-btn" name="resgistro_btn">Crear Cuenta</button>
           
         </div>
-        
       </div>
-      
     </div>
-    <?php
-      $login= new controladorUsuario();
-      $login->ctrIngresoUsuario();
-      $signup= new controladorUsuario();
-      $signup->ctrCrearUsuario();
-    ?>
+    <?php $login= new controladorUsuario(); $login->ctrIngresoUsuario();?>
+    <?php $signup= new controladorUsuario(); $signup->ctrCrearUsuario();?>
     </form>
   </body>
 <script src="js/login.js"></script>
-</html>

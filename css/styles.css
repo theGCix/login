@@ -1,4 +1,18 @@
 @import url("https://fonts.googleapis.com/css?family=Fira+Sans");
+@import url('//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css');
+
+.info-msg,
+.success-msg,
+.warning-msg,
+.error-msg {
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 3px 3px 3px 3px;
+}
+.error-msg {
+  color: #D8000C;
+  background-color: #FFBABA;
+}
 /*
  * Component: alert
  * ----------------
@@ -42,7 +56,7 @@ html, body {
   position: relative;
   min-height: 100vh;
   background-color: #E1E8EE;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   font-family: "Fira Sans", Helvetica, Arial, sans-serif;
