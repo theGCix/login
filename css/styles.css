@@ -93,7 +93,7 @@ html, body {
   -webkit-transform: translate(-50%, -50%);
   width: 65%;
   z-index: 5;
-  -webkit-transition: all 0.3s ease;
+  -webkit-transition: all 0.9s ease;
 }
 .form-structor .signup.slide-up {
   top: 5%;
@@ -180,7 +180,7 @@ html, body {
   bottom: 0;
   background-color: #fff;
   z-index: 5;
-  -webkit-transition: all 0.3s ease;
+  -webkit-transition: all 0.6s ease;
 }
 .form-structor .login::before {
   content: "";
@@ -220,7 +220,7 @@ html, body {
   background-color: #fff;
   border: 1px solid #eee;
   overflow: hidden;
-  margin-top: 50px;
+  margin-top: 20px;
   opacity: 1;
   visibility: visible;
   -webkit-transition: all 0.3s ease;
@@ -244,8 +244,8 @@ html, body {
   color: rgba(0, 0, 0, 0.4);
 }
 .form-structor .login .center .registro-btn {
-  background-color: #6B92A4;
-  color: rgba(255, 255, 255, 0.7);
+  background-color: #043044;
+  color: rgba(255, 255, 255);
   border: 0;
   border-radius: 15px;
   display: block;

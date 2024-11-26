@@ -1,7 +1,7 @@
 <?php
 class controladorUsuario{
     static public function ctrIngresoUsuario(){
-        if(isset($_POST["ingUsuario"])){
+        if(isset($_POST["ingreso_btn"])){
             if(preg_match(pattern: '/^[a-zA-Z0-9]+$/', subject: $_POST["ingUsuario"])){
                 $encriptar= $_POST["ingPassword"];
                 // crypt(string: $_POST["ingPassword"],salt: '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
@@ -31,10 +31,10 @@ class controladorUsuario{
 							</script>';
 						}		
                     }else{
-						echo '<div class="error-msg"><i class="fa fa-times-circle"></i>El usuario aún no está activado</div>';
+						echo '<div class="error-msg"><i class="fa fa-times-circle"></i> El usuario aún no está activado</div>';
 					}
             }else{
-                echo '<div class="error-msg"><i class="fa fa-times-circle"></i>Error al ingresar, intente de nuevo.</div>';
+                echo '<div class="error-msg"><i class="fa fa-times-circle"></i> Error al ingresar, intente de nuevo.</div>';
                  }
             }
         }
@@ -46,7 +46,7 @@ class controladorUsuario{
 	static public function ctrCrearUsuario(){
 		if(isset($_POST["resgistro_btn"])){
 			if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nuevoNombre"]) &&
-			   preg_match('/^[a-zA-Z0-9]+$/', $_POST["nuevoApellido"]) &&
+			//    preg_match('/^[a-zA-Z0-9]+$/', $_POST["nuevoApellido"]) &&
 			   preg_match('/^[a-zA-Z0-9]+$/', $_POST["nuevoUsuario"]) &&
 			   preg_match('/^[a-zA-Z0-9]+$/', $_POST["nuevoPassword"])){
 

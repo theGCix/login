@@ -1,13 +1,13 @@
   <body>
     <form action="" method="post">
     <div class="form-structor">
-      <div class="signup">
+      <div class="signup ">
         <h2 class="form-title" id="signup"><span>o</span>Iniciar Sesion</h2>
         <div class="form-holder">
             <input type="text" class="input" placeholder="Nombre de usuario o correo" name="ingUsuario" />
             <input type="password" class="input" placeholder="Contraseña" name="ingPassword" />
         </div>
-        <button class="submit-btn sign-in">Iniciar Sesion</button>
+        <button class="submit-btn sign-in" name="ingreso_btn">Iniciar Sesion</button>
         <a href="#" style="color: white;">¿Olvidaste tu contraseña?</a>
         
       </div>
