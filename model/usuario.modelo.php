@@ -52,12 +52,14 @@ class modeloUsuario {
 	=============================================*/
 	static public function mdRegistrarUsuario($tabla, $datos){
 
-			$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(nombres, apellidos, usuario, password, correo) VALUES (:nombres, :apellidos, :usuario, :password, :correo)");
+			$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(nombres, apellidos, usuario, password, correo, token) 
+			VALUES (:nombres, :apellidos, :usuario, :password, :correo, :token)");
 			$stmt->bindParam(":nombres", $datos["nombres"], PDO::PARAM_STR);
 			$stmt->bindParam(":apellidos", $datos["apellidos"], PDO::PARAM_STR);
 			$stmt->bindParam(":usuario", $datos["usuario"], PDO::PARAM_STR);
 			$stmt->bindParam(":password", $datos["password"], PDO::PARAM_STR);
 			$stmt->bindParam(":correo", $datos["correo"], PDO::PARAM_STR);
+			$stmt->bindParam(":token", $datos["token"], PDO::PARAM_STR);
 			if($stmt->execute()){
 
 				return "ok";	
@@ -75,6 +77,13 @@ class modeloUsuario {
 	static public function mdConsultaCorreo($tabla,$correo,$contenido){
 		$stmt = Conexion::conectar()->prepare("SELECT correo FROM $tabla WHERE $correo=:$correo LIMIT 1");
 		$stmt->bindParam(":".$correo, $contenido, PDO::PARAM_STR);
+		$stmt->execute();
+		return $stmt -> fetch(PDO::FETCH_ASSOC);
+	}
+
+	static public function mdConsultaUsuario($tabla,$usuario,$input_usuario){
+		$stmt = Conexion::conectar()->prepare("SELECT usuario FROM $tabla WHERE $usuario=:$usuario LIMIT 1");
+		$stmt->bindParam(":".$usuario, $input_usuario, PDO::PARAM_STR);
 		$stmt->execute();
 		return $stmt -> fetch(PDO::FETCH_ASSOC);
 	}
