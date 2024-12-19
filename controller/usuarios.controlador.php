@@ -87,11 +87,9 @@ class controladorUsuario{
 					$mail->addAddress($email,"Hola estimado usuario");     //Add a recipient
 					$mail->isHTML(true);
 					$mail->Subject = 'Verificacion de correo con Muebleria G&M';
-					
 					$email_template="
 					<h2>Te has registrado con Muebleria G&M</h2>
 					<h5>Verifica tu direcccion de correo para iniciar sesion con el link que está debajo</h5>
-					<h4>su token es: $token</h4>
 					<a href='http://localhost/login/view/modulos/verify-email.php?token=$token'>Haz clic aqui</a>";
 					$mail->Body = $email_template;
 					$mail->send();

@@ -7,6 +7,7 @@ CREATE TABLE `usuarios` (
   `correo` text COLLATE utf8_spanish_ci NOT NULL,
   `perfil` text COLLATE utf8_spanish_ci,
   `estado` int(11) DEFAULT(0),
+  `token` int,
   `ultimo_login` datetime NOT NULL,
   `fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
